@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style type="text/css">
+
+.item, .slot{
+width: 64px;
+height:64px;
+border: 1px solid black;
+}
+.item{
+background-color: red;
+}
+.slot{
+border-color: grey;
+background-color: darkgrey;
+}
+.inventory{
+border: 1px solid blue;
+width: 200px;
+height: 200px;
+display: grid;
+grid-template-columns: repeat(3, 1fr) ;
+
+}
+</style>
+
+
+
+
+</head>
+<body>
+
+<div class="item" id="item1"></div>
+<div class="item" id="item2"></div>
+<div class="item" id="item3"></div>
+
+<div class="inventory">
+    <div class="slot" id="slot1" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+    <div class="slot" id="slot2" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+    <div class="slot" id="slot3" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+    <div class="slot" id="slot4" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+    <div class="slot" id="slot5" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+    <div class="slot" id="slot6" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+    <div class="slot" id="slot7" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+    <div class="slot" id="slot8" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+    <div class="slot" id="slot9" ondrop="drop_handler(event)" ondragover="dragover_handler(event)"></div>
+</div>
+<script type="text/javascript">
+ let draggable = document.querySelectorAll(".item");
+
+   function dragstart_handler(ev) {
+   ev.dataTransfer.dropEffect = "move";
+    // Add the target element's id to the data transfer object
+    ev.dataTransfer.setData("application/my-app", ev.target.id);
+     ev.dataTransfer.effectAllowed = "move";
+  }
+
+ function makeItemsDraggable(nodelist){
+ console.log("nodelist",nodelist);
+ console.log("making items draggable");
+   nodelist.forEach((itemnode)=>{
+    console.log(itemnode);
+    itemnode.setAttribute('draggable',true);
+    itemnode.addEventListener("dragstart", dragstart_handler);
+   });
+
+ }
+  window.addEventListener('DOMContentLoaded', () => {
+     console.log("dom loaded");
+     makeItemsDraggable(draggable);
+  });
+
+  function dragover_handler(ev) {
+ ev.preventDefault();
+ ev.dataTransfer.dropEffect = "move"
+}
+function drop_handler(ev) {
+ ev.preventDefault();
+ // Get the id of the target and add the moved element to the target's DOM
+ const data = ev.dataTransfer.getData("application/my-app");
+ ev.target.appendChild(document.getElementById(data));
+}
+
+
+</script>
+</body>
+</html>

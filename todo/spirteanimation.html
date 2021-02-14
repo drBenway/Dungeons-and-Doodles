@@ -1,0 +1,24 @@
+<html>
+<head>
+<style>
+.explosion{
+width: 64px;
+height: 64px;
+background: url('explosion5.png') no-repeat top left;
+  animation-name: sprite; 
+  animation-duration: 1s;
+  animation-timing-function: steps(5);
+  animation-iteration-count: infinite;
+}
+@keyframes sprite {
+  from { background-position: 0px 0px; }
+  to { background-position: -320px 0px; }
+}
+</style>
+</head>
+<body>
+<div class="explosion">
+
+</div>
+</body>
+</html>

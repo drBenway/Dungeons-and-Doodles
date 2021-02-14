@@ -1,0 +1,37 @@
+<html>
+<head>
+</head>
+<body>
+
+
+<script>
+let d = {
+  getRandomInt: function (max) {
+    return Math.floor( Math.random() * max ) +1;
+  }
+six: ()=>{return d.getRandomInt(6)}
+};
+
+
+
+class Stat extends D{
+constructor(){
+  super(6);
+}
+generate(){
+const range =[...Array(4).keys()];
+console.log("range",range);
+let values = range.map(()=>{this.roll});
+values.reverse().pop();
+console.log("values",values);
+let total = reduce((a, b) => {return a + b;});
+console.log("total",total);
+}
+
+
+}
+let stat = new Stat();
+console.log('generated', stat.generate());
+</script>
+</body>
+</html>
