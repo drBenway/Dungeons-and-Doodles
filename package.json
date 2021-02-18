@@ -1,5 +1,6 @@
 {
   "name": "@dungeons_and_doodles/root",
+  "description": "set of web components usable for building RPG style games",
   "private": true,
   "license": "MIT",
   "workspaces": [
