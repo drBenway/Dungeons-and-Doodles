@@ -40,6 +40,7 @@ import { DnDWindow } from '@dungeons_and_doodles/window';
 
 ```html
 <dnd-window title="test"></dnd-window>
+<p>example with ui from https://opengameart.org/content/rpg-game-ui</p>
 ```
 
 
