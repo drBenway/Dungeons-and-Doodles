@@ -1,7 +1,15 @@
 import { html, css, LitElement } from 'lit-element';
 
 export class DnDSpritesheet extends LitElement {
-
+    static get styles() {
+        return css`
+         :host{
+           margin:0px;
+           padding: 0px;
+           display:inline-block;
+         }   
+        `;
+    }
     constructor() {
         super();
     }

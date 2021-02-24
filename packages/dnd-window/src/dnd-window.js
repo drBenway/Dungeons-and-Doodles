@@ -5,21 +5,31 @@ export class DnDWindow extends LitElement {
         return css`
         :host {
               width: 100%;
-    display: block;
-    height: 100%;    
-    position: absolute;
+              display: block;
+              height: 100%;    
+              position: absolute;
         }
             .window{
               border: 1px solid black;
               width: 200px;
               height: 200px;
               position: absolute;
+              border-radius: 5px;
+            }
+            .window div{
+              margin: 0;
+              padding: 0;
             }
            .title{
              text-align: center;
              font-weight: bold;
              height: 20px;
              background-color: red;
+            }
+            .window{
+            border-image: url('packages/dnd-window/assets/borderwindow.png');
+            border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
+            border-image-width: 30px 48px;
             }
             `;
     }
@@ -29,7 +39,8 @@ export class DnDWindow extends LitElement {
             title: { type: String,reflect: true },
             width: {type: Number, reflect: true},
             height: {type:Number, reflect: true},
-            draggable: {type: Boolean, reflect: true}
+            draggable: {type: Boolean, reflect: true},
+            fancycorners : {type: Boolean, reflect: true}
         };
     }
 
@@ -58,10 +69,27 @@ export class DnDWindow extends LitElement {
         this.dragElement();
     }
 
+    fancyCorners(){
+        return html `
+            <div class="topLeftCorner"><slot name="top-left-corner"></slot></div>
+            <div class="topRightCorner"><slot name="top-right-corner"></slot></div>
+            <div class="bottomLeftCorner"><slot name="bottom-left-corner"></slot></div>
+            <div class="bottomRightCorner"><slot name="bottom-right-corner"></slot></div>
+            <div class="topBorder"><slot name="top-border"></slot></div>
+            <div class="rightBorder"><slot name="right-border"></slot></div>
+            <div class="bottomBorder"><slot name="bottom-border"></slot></div>
+            <div class="leftBorder"><slot name="left-border"></slot></div>
+        `;
+    }
+
     render(){
         return html `
             <div class="window" style="${this.setWidthHeight()}">
+                ${this.fancycorners ? this.fancyCorners() : html``}
                 <div class="title" draggable="${this.draggable}" >${this.title}</div>
+                
+                
+                
             </div>
         `;
    }

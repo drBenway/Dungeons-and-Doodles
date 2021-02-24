@@ -8,6 +8,7 @@
 import { html, css, LitElement } from 'lit-element';
 
 import './dnd-window.js';
+import './../dnd-spritesheet/dnd-spritesheet.js'
 
 export default {
   title: 'window',
@@ -15,7 +16,18 @@ export default {
 ```
 
 ```js preview-story
-export const main = () => html`<div style="width: 500px; height:500px; postion: relative"><dnd-window title="test" width="300" height="200" draggable ></dnd-window><div>`;
+export const main = () => html`
+<div style="width: 500px; height:500px; postion: relative">
+ <dnd-window title="test" width="300" height="200" draggable >
+ <div slot="top-left-corner">
+ <dnd-spritesheet  src="../../dnd-window/assets/window.png" spriten=1 width=4 height="4" /></dnd-spritesheet>
+ </div>
+<div  slot="top-right-corner">
+<dnd-spritesheet  src="../../dnd-window/assets/window.png" spriten=1 width=4 height="4" /></dnd-spritesheet></div>
+ </dnd-window>
+ <div>
+
+`;
 ```
 
 ## Features
