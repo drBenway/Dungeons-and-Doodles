@@ -22,25 +22,36 @@ export class DnDWindow extends LitElement {
             }
            .title{
              text-align: center;
-             font-weight: bold;
+             font-weight: normal;
              height: 20px;
-             background-color: red;
+             color: white;
             }
             .window{
             border-image: url('packages/dnd-window/assets/borderwindow.png');
             border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
             border-image-width: 30px 48px;
             }
+            .title-actions{
+            display: inline-block;
+            color: white;
+            border: 2px solid red;
+            width: 40px;
+            height: 20px;
+            }
+            .content ::slotted(){
+            width: 100%;
+            height: 100%;
+            text-align : left;
+            }
             `;
     }
     // map properties
     static get properties() {
         return {
-            title: { type: String,reflect: true },
             width: {type: Number, reflect: true},
             height: {type:Number, reflect: true},
             draggable: {type: Boolean, reflect: true},
-            fancycorners : {type: Boolean, reflect: true}
+            fancycorners : {type: Boolean, reflect: false}
         };
     }
 
@@ -86,10 +97,13 @@ export class DnDWindow extends LitElement {
         return html `
             <div class="window" style="${this.setWidthHeight()}">
                 ${this.fancycorners ? this.fancyCorners() : html``}
-                <div class="title" draggable="${this.draggable}" >${this.title}</div>
-                
-                
-                
+                <div class="title" draggable="${this.draggable}" >
+                    <slot name="windowtitle"></slot>
+                    <slot name="windowactions></slot>
+                </div>
+                <div class="content">
+                     <slot name="content"></slot>
+                </div>
             </div>
         `;
    }

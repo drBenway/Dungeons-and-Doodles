@@ -33,7 +33,7 @@ export class DnDSpritesheet extends LitElement {
     updatesprites(){
         console.log('update');
         try {
-            this.loadSpritesheet(this.src).then(res => {
+            this.loadSpritesheet().then(res => {
                 this.generateSprites(res);
             });
         }
@@ -69,8 +69,8 @@ export class DnDSpritesheet extends LitElement {
 
     generateSprites(img) {
         console.log("generatesprites");
-        let spritewidth = img.width / this.width; // width of the image devided by the number of sprites
-        let spriteheight = img.height / this.height;
+        let spritewidth = img.width / this.width; // width of the image devided by the number of x sprites
+        let spriteheight = img.height / this.height; // height of the image devided by the number of y sprites
         let newUrl = new URL(`${this.src}`, import.meta.url);
         let styles = `
             .sprite{
@@ -109,80 +109,10 @@ export class DnDSpritesheet extends LitElement {
     render() {
         console.log("render");
         return html`
+            <div class="container">
             <style id="stylesheet"></style>
             <div class="sprite" id="sprite${this.spritenr}"></div>
+            </div>
         `;
     }
 }
-
-
-/*class SpriteSheet extends HTMLElement {
-
-
-
-
-
-    generateSprites(img) {
-
-
-        let spritewidth = img.width / this.width; // width of the image devided by the number of sprites
-        let spriteheight = img.height / this.height;
-        let styles = `
-            .sprite{
-                 #opacity: 0.8;
-                width: ${spritewidth}px;
-                height: ${spriteheight}px;
-                background: url('${this.src}') no-repeat;
-            }
-        `;
-
-        // total nr of possible sprites
-        let total = this.width * this.height;
-        let step = 1;
-
-        for (var y = 0; y < this.height; y++) {
-            for (var x = 0; x < this.width; x++) {
-
-                let negativex = x * spritewidth;
-                let negativey = y * spriteheight;
-                this.styles = this.styles + `
-                #sprite${step}{
-                    background-position: -${negativex}px -${negativey}px ;
-                }`;
-                step += 1;
-            }
-        }
-
-        let el = this.shadowRoot.querySelector('#stylesheet');
-        el.innerHTML = styles;
-        let sprite = this.shadowRoot.querySelector('.sprite');
-        sprite.id = `sprite${this.getAttribute('spritenr')}`;
-
-    }
-
-    connectedCallback() {
-        // get the image width and height from the url
-        console.log('connectedcallback');
-        this.update();
-
-
-
-    }
-    update(){
-        console.log('update');
-        this.loadSpritesheet(this.src).then(res=>{
-            this.generateSprites(res);
-        })
-    }
-    updateSpritenr(val){
-        let sprite = this.shadowRoot.querySelector('.sprite');
-        sprite.id = `sprite${val}`;
-    }
-
-    attributeChangedCallback(name, oldValue, newValue){
-        console.log('attributechanged');
-        this.update();
-    }
-
-}*/
-
