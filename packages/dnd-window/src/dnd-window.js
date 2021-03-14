@@ -1,4 +1,5 @@
 import { html, css, LitElement } from 'lit-element';
+import {classMap} from 'lit-html/directives/class-map';
 
 export class DnDWindow extends LitElement {
     static get styles() {
@@ -24,12 +25,12 @@ export class DnDWindow extends LitElement {
              text-align: center;
              font-weight: normal;
              height: 20px;
-             color: white;
+             color: black;
             }
-            .window{
-            border-image: url('packages/dnd-window/assets/borderwindow.png');
-            border-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
-            border-image-width: 30px 48px;
+            .window.fancycorners{
+            border-image: var(--fancyborders-image);
+            border-image-slice: var(--fancyborders-image-slice);
+            border-image-width: var(--fancyborders-image-width);
             }
             .title-actions{
             display: inline-block;
@@ -51,7 +52,7 @@ export class DnDWindow extends LitElement {
             width: {type: Number, reflect: true},
             height: {type:Number, reflect: true},
             draggable: {type: Boolean, reflect: true},
-            fancycorners : {type: Boolean, reflect: false}
+            fancycorners : {type: Boolean, reflect: true}
         };
     }
 
@@ -66,9 +67,13 @@ export class DnDWindow extends LitElement {
         return style
     }
 
+
     constructor() {
         super();
+
     }
+
+
     firstUpdated(){
         console.log("first update");
         this.pos1 = this.pos1 || 0
@@ -77,10 +82,12 @@ export class DnDWindow extends LitElement {
         this.pos4 = this.pos4 || 0
         this.mover = this.shadowRoot.querySelector('.title');
         this.cont = this.shadowRoot.querySelector('.window');
-        this.dragElement();
+        if(this.draggable){
+            this.dragElement();
+        }
     }
 
-    fancyCorners(){
+/*    fancyCorners(){
         return html `
             <div class="topLeftCorner"><slot name="top-left-corner"></slot></div>
             <div class="topRightCorner"><slot name="top-right-corner"></slot></div>
@@ -91,12 +98,14 @@ export class DnDWindow extends LitElement {
             <div class="bottomBorder"><slot name="bottom-border"></slot></div>
             <div class="leftBorder"><slot name="left-border"></slot></div>
         `;
-    }
+    }*/
 
     render(){
+        let classes = { fancycorners: false, window: true};
+        if(this.fancycorners){classes.fancycorners = true;}
         return html `
-            <div class="window" style="${this.setWidthHeight()}">
-                ${this.fancycorners ? this.fancyCorners() : html``}
+            <div class="${classMap(classes)}" style="${this.setWidthHeight()}">
+                
                 <div class="title" draggable="${this.draggable}" >
                     <slot name="windowtitle"></slot>
                     <slot name="windowactions></slot>
@@ -145,6 +154,5 @@ export class DnDWindow extends LitElement {
         event = event || window.event
         this.pos3 = event.clientX
         this.pos4 = event.clientY
-
     }
-};
+}

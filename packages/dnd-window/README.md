@@ -22,12 +22,16 @@ export const main = () => html`
    width: 500px;
    height: 500px;
    postion: relative;
+   
+   --fancyborders-image: url('packages/dnd-window/assets/borderwindow.png');
+   --fancyborders-image-slice: calc(50 / 184 * 100%) calc(80 / 284 * 100%) fill;
+   --fancyborders-image-width: 30px 48px;
 }
 </style>
 <div id ="testcontainer">
 
- <dnd-window width="300" height="200" draggable >
-   <span slot="windowtitle">Preview</span>
+ <dnd-window width="300" height="200" fancycorners draggable >
+   <span slot="windowtitle">Previews</span>
    <div slot="windowactions"></div>
    <div slot="content">this is a test</div>
  </dnd-window>
@@ -72,8 +76,9 @@ import { DnDWindow } from '@dungeons_and_doodles/window';
 ```js preview-story
 export const handler = () => html`
   <dnd-window title="test">
+      <div slot="">Previewz<div>
       <div slot="titleactions">
-       <span style="color:white; border: 1px solid red">X</span> 
+       <span style="color:black; border: 1px solid red">X</span> 
     </div>
   </dnd-window>
 `;
