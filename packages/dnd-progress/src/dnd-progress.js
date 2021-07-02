@@ -31,16 +31,23 @@ export class DndProgress extends LitElement {
             background-size: 35px 20px, 100% 100%, 100% 100%;
         } 
         
+        /* Chrome bar styling  */
+        
         :host([type="mana"]) progress[value]::-webkit-progress-value{
             background-color: var(--dnd-progress-mana, blue);
+            -webkit-animation: move 5s linear 0 infinite;
         }
         :host([type="health"]) progress[value]::-webkit-progress-value{
             background-color: var(--dnd-progress-mana, red);
+            -webkit-animation: move 5s linear 0 infinite;
         }
         :host([type="stamina"]) progress[value]::-webkit-progress-value{
             background-color: var(--dnd-progress-stamina, green);
+            -webkit-animation: move 5s linear 0 infinite;
         }
         
+        
+        /* Firefox bar styling  */
         :host([type="mana"]) progress::-moz-progress-bar{
             background-color: var(--dnd-progress-mana, blue);
         }
@@ -50,7 +57,7 @@ export class DndProgress extends LitElement {
         :host([type="stamina"]) progress::-moz-progress-bar {
               background-color: var(--dnd-progress-stamina, green);
         }    
-        `;
+ `
     }
 
     constructor() {
