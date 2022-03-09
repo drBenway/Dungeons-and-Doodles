@@ -69,7 +69,9 @@ export class DndProgress extends LitElement {
     static get properties() {
         return {
             max: { type: Number,reflect: true },
-            value: { type: String , reflect: true},
+            value: { type: String ,
+                reflect: true,
+            },
             label: {type: Boolean}
         };
     }
@@ -77,7 +79,7 @@ export class DndProgress extends LitElement {
 
     render() {
         console.log("render");
-        let noLabelTemplate = html`<progress max="${this.max}" value="${this.value}"></progress>`;
+        let noLabelTemplate = html`<progress $class="animate" max="${this.max}" value="${this.value}"></progress>`;
         let labelTemplate = html`<progress max="${this.max}" value="${this.value}"></progress><label>${this.value}/${this.max}</label>`;
 
         if(this.label){

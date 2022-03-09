@@ -15,12 +15,17 @@ export default {
 ```
 
 ```js preview-story
-export const main = () => html`<dnd-spritesheet src="../assets/flare_armor.png" spritenr="3" width="5" height="5"></dnd-spritesheet>`;
+export const main = () => html`source image:<br /> 
+<img src="./packages/dnd-spritesheet/assets/flare_armor.png" /> <br /> 
+sprite 17:<br />  
+<dnd-spritesheet src="../assets/flare_armor.png" spritenr="17" width="5" height="5">
+</dnd-spritesheet>`;
+
 ```
 
 ## Features
 
-- works with any size
+- works with any even spaced sprites (width and height get divided by the amount of slots)
 - you define the x and y sprites
 - pick any spot in the sheet
 
