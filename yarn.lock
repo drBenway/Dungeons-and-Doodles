@@ -1453,6 +1453,11 @@
   dependencies:
     vary "^1.1.2"
 
+"@lion/ajax@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@lion/ajax/-/ajax-0.6.0.tgz#f8a923e3402d74a06c7d41b4274af4f36d763ed3"
+  integrity sha512-5AbNKKVKCS7Q3CrsbwSrEXpS/r+8V8tfGYy0PCrv+0t1fhZPZAYshB3I9gWJGKHhduNqJWhp+zOAk8LOGp0n5A==
+
 "@lion/core@0.13.8":
   version "0.13.8"
   resolved "https://registry.yarnpkg.com/@lion/core/-/core-0.13.8.tgz#3ee9b32b0f3cbbeec5a9050de88e36651c80ce5b"
