@@ -1,0 +1,53 @@
+root {
+
+    /****** colors  ******/
+    --dnd-primary: #797492;
+    --dnd-secondary: #E1BC81;
+    --dnd-ternary: #0B0D14;
+    --dnd-quarternary: #B99B51;
+    --dnd-quinary: #C6542D;
+    --dnd-senary: #909090;
+
+    --dnd-white: #FFFFFF;
+    --dnd-black: #000000;
+
+    /****** state *******/
+    --dnd-default: #E1BC81;
+    --dnd-active: #B99B51;
+    --dnd-focus: #000000;
+    --dnd-hover: #000000;
+    --dnd-disabled: #000000;
+    --dnd-visited: #000000;
+
+
+
+    --dnd-background: #FFFFFF;
+    --dnd-background-transparancy: #000;
+
+    /******** typography  **********/
+    --dnd-fontfamily: 'Noto Sans', Sans Serif;
+    --dnd-link-color:  var(--dnd-active);
+    --dnd-link-visited: var(--dnd-)
+
+}
+
+
+body{
+    background-color: var(--dnd-background, var(--dnd-white));
+    font-size: 1rem;
+    font-family: var(--dnd-fontfamily);
+}
+a{
+    color: var(--dnd-default);
+    text-decoration: none;
+}
+a:hover{
+    color: var(--dnd-hover);
+    text-decoration: underline;
+}
+a:active{
+    color: var(--dnd-default)
+}
+div.example{
+    background-color: var(--dnd-background);
+}
